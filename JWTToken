@@ -1,0 +1,97 @@
+pom.xml
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>in.nummetry.ram</groupId>
+  <artifactId>JwtAppsample</artifactId>
+  <version>1.0</version>
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+  <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+ <dependencies><!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.1</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.4.0-b180830.0359</version>
+</dependency>
+</dependencies>
+ </project>
+
+
+JWTUtility.java
+
+
+
+package in.numetry.ram.util;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class Jwtutility {
+	public String generateToken(
+			String id,
+			String subject,
+			String key
+			) {
+		return Jwts.builder()
+			.setId(id)
+			.setSubject(subject)
+			.setIssuer("numetry")
+			.setIssuedAt(new Date(System.currentTimeMillis()))
+			.setExpiration(new Date(System.currentTimeMillis()+ TimeUnit.MINUTES.toMillis(10)))
+			.signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encode(key.getBytes()))
+			.compact();
+		
+	}
+    public Claims getClims(String key,String token) {
+    	return Jwts.parser()
+    			.setSigningKey(Base64.getEncoder().encode(key.getBytes()))
+    			.parseClaimsJws(token)
+    			.getBody();
+    }
+}
+
+
+
+JWTTest.java
+
+
+
+package in.numetry.ram.test;
+
+import in.numetry.ram.util.Jwtutility;
+import io.jsonwebtoken.Claims;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        //token generator
+		//String key="numetrytech";
+		Jwtutility util =new Jwtutility();
+		 String token = util.generateToken("A1255", "RAM", "numetrytech");
+		 System.out.println(token);
+		 Claims c= util.getClims("numetrytech", token);
+
+		 System.out.println("id::"+c.getId());
+		 System.out.println("subjec/name::"+c.getSubject()); 
+		 System.out.println("expiration Date and time::"+c.getExpiration());
+		 System.out.println("issure::"+c.getIssuer());
+		 System.out.println("issued date and time::"+c.getIssuedAt());
+		 
+	}
+
+}
