@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color:black;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+
+.gallery a {
+    margin: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s;
+    
+}
+
+.gallery a:hover {
+    transform: scale(1.1);
+}
+.gallery img{
+    width: 275px;
+    height: 275px;
+    display: flex;
+    position: relative;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding-right: 2px;
+
+}
+.photo h3{    
+    text-align: center;
+    color: white;
+    text-shadow: goldenrod;
+    transition: transform 0.2s;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    
+}
+.photo h3:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+    color: antiquewhite;
+    motion: reverse;
+}
+h4{
+    color: white;
+}
+
+#lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    visibility: hidden;
+}
+
+#lightbox img {
+    max-width: 50%;
+    max-height: 50%;
+    border: 2px solid white;
+}
+
+#caption {
+    color: white;
+    margin-top: 10px;
+}
+
+#close-lightbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+    </style>
+    <title>Photo Gallery</title>
+</head>
+<body>
+    <div class="photo">
+        <h3>Photos&nbsp;&nbsp;&nbsp;Albums</h3>
+    </div>
+    
+    <h4>today</h4>
+    <div class="gallery">
+        
+        <a href="thumbnails/thumb1.jpeg" data-caption="Image 1">
+            <img src="thumbnails/thumb1.jpeg" alt="Image 1">
+        </a>
+
+            <a href="thumbnails/thumb3.jpeg" data-caption="Image 3">
+            <img src="thumbnails/thumb3.jpeg" alt="Image 3">
+        </a>
+        </div>
+        <h4>sept 14</h4>
+       <div class="gallery">
+       
+            <a href="thumbnails/thumb4.jpeg" data-caption="Image 4">
+                <img src="thumbnails/thumb4.jpeg" alt="Image 4">
+            </a>
+        
+             <a href="thumbnails/thumb5.jpeg" data-caption="Image 5">
+            <img src="thumbnails/thumb5.jpeg" alt="Image 5">
+        </a>
+            <a href="thumbnails/thumb2.jpeg" data-caption="Image 2">
+                <img src="thumbnails/thumb2.jpeg" alt="Image 2">
+            </a>
+        </div>
+       
+        
+       
+        
+        <!-- Repeat this structure for each image -->
+    </div>
+
+    <div id="lightbox" class="hidden">
+        <img id="lightbox-image" src="" alt="">
+        <p id="caption"></p>
+        <span id="close-lightbox">&times;</span>
+    </div>
+
+    <script>// script.js
+        const gallery = document.querySelectorAll('.gallery a');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const caption = document.getElementById('caption');
+        const closeLightbox = document.getElementById('close-lightbox');
+        
+        // Open lightbox when an image is clicked
+        gallery.forEach((imgLink) => {
+            imgLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                lightboxImage.src = imgLink.href;
+                caption.textContent = imgLink.getAttribute('data-caption');
+                lightbox.style.visibility = 'visible';
+            });
+        });
+        
+        // Close lightbox when the close button is clicked
+        closeLightbox.addEventListener('click', () => {
+            lightbox.style.visibility = 'hidden';
+        });
+        
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.visibility = 'hidden';
+            }
+        });
+        </script>
+</body>
+</html>
