@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Pricing Table</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for the pricing table */
+        .pricing-table {
+            margin-top: 50px;
+            color:black;
+            margin: 10px,10px;
+            padding: 10px,20px;
+            
+        }
+        .pricing-card {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .pricing-card h3 {
+            font-size: 24px;
+        }
+        .pricing-card h4 {
+            font-size: 36px;
+        }
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .pricing-card ul li {
+            margin-bottom: 15px;
+        }
+        .pricing-card{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row pricing-table">
+            <!-- Plan 1 -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-card">
+                    <h3>Free Trail</h3>
+                    <h4>Try Premium free for 1 month</h4>
+                    <ul>
+                        <li></li>
+                        <li>1 User</li>
+                        <li>Activate free trail for month. <sapn style="color:blue";>Terms and conditions</sapn> apply</li>
+                    </ul>
+                    <button class="btn btn-primary">GET PREMIUM</button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-card">
+                    <h3>Basic Plan</h3>
+                    <h4>$9.99/month</h4>
+                    <ul>
+                        <li>100GB</li>
+                        <li>1 User</li>
+                        <li>Prices very according to duration of plan <sapn style="color:blue";>Terms and conditions</sapn>apply</li>
+                    </ul>
+                    <button class="btn btn-primary">Select</button>
+                </div>
+            </div>
+            
+            <!-- Plan 2 -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-card">
+                    <h3>Pro Plan</h3>
+                    <h4>$19.99/month</h4>
+                    <ul>
+                        <li>300GB</li>
+                        <li>3 Users</li>
+                        <li>Offers only users who are new to Pro.<span style="color:blue";>Terms and conditions</span>apply</li>
+                    </ul>
+                    <button class="btn btn-primary">Select</button>
+                </div>
+            </div>
+            
+            <!-- Plan 3 -->
+            
+        </div>
+    </div>
+
+   
+   
+</html>
